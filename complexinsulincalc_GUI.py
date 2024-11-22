@@ -54,6 +54,14 @@ def calculate_dose():
     except ValueError:
         messagebox.showerror("Error", "Please enter valid numeric inputs.")
 
+def clear_inputs():
+    """Clear all input fields and the result label."""
+    dose_type_var.set("breakfast")
+    carbs_entry.delete(0, tk.END)
+    ninety_mins_var.set("No")
+    blood_sugar_entry.delete(0, tk.END)
+    result_label.config(text="")
+
 # Create the main window
 root = tk.Tk()
 root.title("Insulin Dose Calculator")
@@ -80,7 +88,11 @@ blood_sugar_entry.grid(row=3, column=1)
 
 # Calculate button
 calculate_button = tk.Button(root, text="Calculate", command=calculate_dose)
-calculate_button.grid(row=4, column=0, columnspan=2, pady=10)
+calculate_button.grid(row=4, column=0, pady=10)
+
+# Clear button
+clear_button = tk.Button(root, text="Clear", command=clear_inputs)
+clear_button.grid(row=4, column=1, pady=10)
 
 # Result label
 result_label = tk.Label(root, text="", fg="blue")
